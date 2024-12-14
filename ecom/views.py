@@ -27,7 +27,7 @@ def home_view(request):
     
 
 
-#for showing login button for admin(by sumit)
+#for showing login button for admin.
 def adminclick_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
@@ -56,8 +56,6 @@ def customer_signup_view(request):
 #for checking user is a customer
 def is_customer(user):
     return user.groups.filter(name='CUSTOMER').exists()
-
-
 
 #---------AFTER ENTERING CREDENTIALS WE CHECK WHETHER USERNAME AND PASSWORD IS OF ADMIN,CUSTOMER
 def afterlogin_view(request):
@@ -340,8 +338,6 @@ def customer_home_view(request):
         product_count_in_cart=0
     return render(request,'ecom/customer_home.html',{'products':products,'product_count_in_cart':product_count_in_cart})
 
-
-
 # shipment address before placing order
 @login_required(login_url='customerlogin')
 def customer_address_view(request):
@@ -505,11 +501,6 @@ def download_invoice_view(request,orderID,productID):
 
     }
     return render_to_pdf('ecom/download_invoice.html',mydict)"""
-
-
-
-
-
 
 @login_required(login_url='customerlogin')
 @user_passes_test(is_customer)

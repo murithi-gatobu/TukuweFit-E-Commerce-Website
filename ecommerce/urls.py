@@ -1,8 +1,15 @@
-
+from django.conf.urls.i18n import urlpatterns
 from django.contrib import admin
 from django.urls import path
 from ecom import views
 from django.contrib.auth.views import LoginView,LogoutView
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:  # Only serve media files in development
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home_view,name=''),

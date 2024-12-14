@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 # Create your models here.
 class Customer(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
@@ -18,11 +19,17 @@ class Customer(models.Model):
 
 class Product(models.Model):
     name=models.CharField(max_length=40)
-    product_image= models.ImageField(upload_to='product_image/',null=True,blank=True)
+    product_image = models.ImageField(upload_to='product_image/', blank=True, null=True)
     price = models.PositiveIntegerField()
     description=models.CharField(max_length=40)
     def __str__(self):
         return self.name
+
+    """class Product(models.Model):
+        name = models.CharField(max_length=100)
+        price = models.DecimalField(max_digits=10, decimal_places=2)
+        description = models.TextField()
+        product_image = models.ImageField(upload_to='product_images/')"""
 
 
 class Orders(models.Model):
